@@ -1,0 +1,14 @@
+#http://webskills.kr/archives/473
+#https://nanati.me/htaccess_page_ssl/
+Options -MultiViews
+RewriteEngine On
+Options -Indexes
+#RewriteBase /home/
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteCond %{REQUEST_URI} !(.js$)
+RewriteCond %{REQUEST_URI} !(.css$)
+RewriteCond %{REQUEST_URI} !(.ico$)
+RewriteRule ^(.*)$ Index.php?htaccess=$1 [QSA,L]
