@@ -1,11 +1,22 @@
 <?php
-	include_once $_SERVER ["DOCUMENT_ROOT"] . "/lib/Log4php/Logger.php";
+    $GLOBALS["ROOT"] = $_SERVER ["DOCUMENT_ROOT"]."/../";
+    include_once $GLOBALS["ROOT"] . "/lib/Log4php/Logger.php";
+    Logger::configure ( $GLOBALS["ROOT"] . '/Property/config.xml' );
+    $logger = Logger::getLogger("Index.php");
+    /*
+     $logger->trace("My first message.");   // Not logged because TRACE < WARN
+     $logger->debug("My second message.");  // Not logged because DEBUG < WARN
+     $logger->info("My third message.");    // Not logged because INFO < WARN
+     $logger->warn("My fourth message.");   // Logged because WARN >= WARN
+     $logger->error("My fifth message.");   // Logged because ERROR >= WARN
+     $logger->fatal("My sixth message.");   // Logged because FATAL >= WARN
+     */
 	spl_autoload_register(function($class) {
 		try{
 			if(trim($class) === "mysqli"){
 				return;
 			} else if (trim($class) === "Smarty"){
-				include_once $_SERVER ["DOCUMENT_ROOT"] . "/lib/Smarty/libs/Smarty.class.php";
+			    include_once $GLOBALS["ROOT"] . "/lib/Smarty/libs/Smarty.class.php";
 				return;
 			} else if(strpos($class, "Smarty") !== false) {
 				return;
@@ -13,7 +24,7 @@
 			$filename = $class . ".mvc.class.php";
 			static $includelist;
 			if($includelist === NULL){
-				$includelist = getFileList($_SERVER ["DOCUMENT_ROOT"]);
+			    $includelist = getFileList($GLOBALS["ROOT"]);
 			}
 			foreach($includelist as $key => $value){
 				if(strpos($value, $filename) !== false){
@@ -29,7 +40,7 @@
 		$list = array();
 		$files = scandir($root);
 		foreach ($files as $key => $value) {
-			if($value === "." || $value === ".." ){
+			if($value === "." || $value === ".." || $value === ".git" || $value === ".settings" || $value === "www"){
 				continue;
 			}
 			$file = $root."/".$value;
@@ -50,16 +61,6 @@
 	   die();
 	}
 	try{
-		Logger::configure ( $_SERVER ['DOCUMENT_ROOT'] . '/Property/config.xml' );
-		$logger = Logger::getLogger("Index.php");
-		/*
-		$logger->trace("My first message.");   // Not logged because TRACE < WARN
-		$logger->debug("My second message.");  // Not logged because DEBUG < WARN
-		$logger->info("My third message.");    // Not logged because INFO < WARN
-		$logger->warn("My fourth message.");   // Logged because WARN >= WARN
-		$logger->error("My fifth message.");   // Logged because ERROR >= WARN
-		$logger->fatal("My sixth message.");   // Logged because FATAL >= WARN
-		*/
 		$router = explode ("/",$_GET["htaccess"]);
 		$logger->info($_GET["htaccess"]);
 		$controller = "";
@@ -114,10 +115,10 @@
 		//https://nsws.tistory.com/7
 		//https://www.smarty.net/
 		$smarty = new Smarty();
-		$smarty->template_dir = $_SERVER ["DOCUMENT_ROOT"] .'/View';
-		$smarty->compile_dir = $_SERVER ["DOCUMENT_ROOT"] . '/lib/Smarty/templates_c';
-		$smarty->cache_dir = $_SERVER ["DOCUMENT_ROOT"] . '/lib/Smarty/cache';
-		$smarty->config_dir = $_SERVER ["DOCUMENT_ROOT"] . '/lib/Smarty/configs';
+		$smarty->template_dir = $GLOBALS["ROOT"] .'/View';
+		$smarty->compile_dir = $GLOBALS["ROOT"] . '/lib/Smarty/templates_c';
+		$smarty->cache_dir = $GLOBALS["ROOT"] . '/lib/Smarty/cache';
+		$smarty->config_dir = $GLOBALS["ROOT"] . '/lib/Smarty/configs';
 		foreach ($modelmap->getDataList() as $key => $value) {
 			$smarty->assign($key, $value);
 		}
