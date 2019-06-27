@@ -5,9 +5,9 @@ abstract class AbstractDao {
 	// http://php.net/manual/en/pdostatement.execute.php
 	//https://thereclub.tistory.com/50
 	private $hostname = "localhost";
-	private $username = "root";
+	private $username = "test";
 	private $password = "a12345";
-	private $dbname = "blog";
+	private $dbname = "community";
 	protected function transaction($qy,$clz){
 		$conn = mysqli_connect($this->hostname, $this->username, $this->password, $this->dbname);
 		try{

@@ -9,7 +9,7 @@ class HomeController extends AbstractController{
 		$bean->setData($ret);
 		$modelmap->addData("test",$bean);
 		parent::getLogger()->info("hello");
-		return "Index";
+		return "index";
 	}
 }
 ?>

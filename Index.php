@@ -115,9 +115,9 @@
 		//https://www.smarty.net/
 		$smarty = new Smarty();
 		$smarty->template_dir = $_SERVER ["DOCUMENT_ROOT"] .'/View';
-		$smarty->compile_dir = $_SERVER ["DOCUMENT_ROOT"] . 'lib/Smarty/templates_c';
-		$smarty->cache_dir = $_SERVER ["DOCUMENT_ROOT"] . 'lib/Smarty/cache';
-		$smarty->config_dir = $_SERVER ["DOCUMENT_ROOT"] . 'lib/Smarty/configs';
+		$smarty->compile_dir = $_SERVER ["DOCUMENT_ROOT"] . '/lib/Smarty/templates_c';
+		$smarty->cache_dir = $_SERVER ["DOCUMENT_ROOT"] . '/lib/Smarty/cache';
+		$smarty->config_dir = $_SERVER ["DOCUMENT_ROOT"] . '/lib/Smarty/configs';
 		foreach ($modelmap->getDataList() as $key => $value) {
 			$smarty->assign($key, $value);
 		}
