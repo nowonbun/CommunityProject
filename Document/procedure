@@ -1,0 +1,14 @@
+1. The first problem is permission in apache2. The resolved method is to change the config file that is http.conf
+2. The second problem is simplexml.
+We can confirm the installed module in php thought command the php -m.
+and I have done the install simplexml.
+
+cmd] apt-get install php7.2-xml
+cmd] apt-get install  php-simplexml
+
+3. The third problem is .htaccess file.
+The re-write mod is not installed.
+
+cmd] a2enmod rewrite
+
+4. php.ini was modified. That modified is the mysqli, xml-rpc.
