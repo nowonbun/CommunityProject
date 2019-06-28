@@ -1,0 +1,150 @@
+create table group{
+    code char(4) not null,
+    name nvarchar(255),
+    isactive bit default 1 not null,
+    primary key(code)
+}
+
+create table boardtype{
+    code char(4) not null,
+    name nvarchar(255),
+    isactive bit default 1 not null,
+    primary key(code)
+}
+
+create table attachmenttype{
+    code char(4) not null,
+    name nvarchar(255),
+    contenttype nvarchar(255),
+    isactive bit default 1 not null,
+    primary key(code)
+}
+
+create table sourcetype{
+    code char(4) not null,
+    name nvarchar(255),
+    isactive bit default 1 not null,
+    primary key(code)
+}
+
+create table member(
+    id varchar(100) not null,
+    email varchar(100) not null unique,
+    nickname nvarchar(255) not null,
+    groupcode char(4) not null,
+    isban bit default 0 not null,
+    isdeleted bit default 0 not null,
+    createdate datetime not null,
+    updatedate datetime,
+    
+    primary key(id),
+    foreign key (groupcode) references group(code)
+)
+
+create table boardcategory(
+    idx int not null auto_increment,
+    name nvarchar(255) not null,   
+    boardtypecode char(4) not null,
+    isdeleted bit default 0 not null,
+    createddate datetime not null,
+    creater varchar(100) not null,
+    updateddate datetime,
+    updater varchar(100),
+    
+    primary key(idx),
+    foreign key(boardtypecode) references boardtype(boardtypecode)
+)
+
+create table board(
+    idx int not null auto_increment,
+    boardcategory int not null,
+    parentboardidx int,
+    title nvarchar(700) not null,
+    contents text not null,
+    isdeleted bit default 0 not null,
+    createddate datetime not null,
+    creater varchar(100) not null,
+    updateddate datetime,
+    updater varchar(100),
+    
+    primary key(idx),
+    foreign key(boardcategory) references boardcategory(idx),
+    foreign key(parentBoardIdx) references board(idx)
+)
+
+create table attachment(
+    idx int not null auto_increment,
+    boardidx int not null,
+    attachmenttype char(4) not null,
+    data longblob not null,
+    isdeleted bit default 0 not null,
+    createddate datetime not null,
+    creater varchar(100) not null,
+    updateddate datetime,
+    updater varchar(100),
+    
+    primary key(idx),
+    foreign key(boardidx) references board(idx),
+    foreign key(attachmenttype) references attachmenttype(code)
+)
+
+create table source(
+    idx int not null auto_increment,
+    boardidx int not null,
+    sourcetypecode char(4) not null,
+    isdeleted bit default 0 not null,
+    createddate datetime not null,
+    creater varchar(100) not null,
+    updateddate datetime,
+    updater varchar(100),
+    
+    primary key(idx),
+    foreign key(boardidx) references board(idx),
+    foreign key(sourcetypecode) references sourcetype(code)
+)
+
+create table comment(
+    idx int not null auto_increment,
+    boardidx int not null,
+    parentcommentidx int null,
+    contents nvarchar(700),
+    isdeleted bit default 0 not null,
+    createddate datetime not null,
+    creater varchar(100) not null,
+    updateddate datetime,
+    updater varchar(100),
+    
+    primary key(idx),
+    foreign key(boardidx) references board(idx),
+    foreign key(parentcommentidx) references comment(idx)
+)
+
+create table mail(
+    idx int not null auto_increment,
+    memberid varchar(100) not null,
+    contents text,
+    createddate datetime not null,
+    
+    primary key(idx),
+    foreign key(memberid) references member(id)
+)
+
+create table banip(
+    idx int not null auto_increment,
+    ipaddress nvarchar(20) not null,
+    isdeleted bit default 0 not null,
+    createddate datetime not null,
+    creater varchar(100) not null,
+    updateddate datetime,
+    updater varchar(100),
+    
+    primary key(idx)
+)
+
+create table notice(
+
+)
+
+create table message(
+
+)
