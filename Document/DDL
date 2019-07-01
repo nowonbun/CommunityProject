@@ -1,31 +1,41 @@
-create table group{
+drop database community;
+create database community;
+
+use community;
+
+create table grouptype(
     code char(4) not null,
     name nvarchar(255),
     isactive bit default 1 not null,
+    
     primary key(code)
-}
+);
 
-create table boardtype{
+create table boardtype(
     code char(4) not null,
     name nvarchar(255),
     isactive bit default 1 not null,
+    
     primary key(code)
-}
+);
 
-create table attachmenttype{
+create table attachmenttype(
     code char(4) not null,
     name nvarchar(255),
     contenttype nvarchar(255),
     isactive bit default 1 not null,
+    
     primary key(code)
-}
+);
 
-create table sourcetype{
+create table sourcetype(
     code char(4) not null,
     name nvarchar(255),
+    classtype nvarchar(255),
     isactive bit default 1 not null,
+    
     primary key(code)
-}
+);
 
 create table member(
     id varchar(100) not null,
@@ -38,8 +48,8 @@ create table member(
     updatedate datetime,
     
     primary key(id),
-    foreign key (groupcode) references group(code)
-)
+    foreign key (groupcode) references grouptype(code)
+);
 
 create table boardcategory(
     idx int not null auto_increment,
@@ -52,8 +62,8 @@ create table boardcategory(
     updater varchar(100),
     
     primary key(idx),
-    foreign key(boardtypecode) references boardtype(boardtypecode)
-)
+    foreign key(boardtypecode) references boardtype(code)
+);
 
 create table board(
     idx int not null auto_increment,
@@ -70,7 +80,7 @@ create table board(
     primary key(idx),
     foreign key(boardcategory) references boardcategory(idx),
     foreign key(parentBoardIdx) references board(idx)
-)
+);
 
 create table attachment(
     idx int not null auto_increment,
@@ -86,7 +96,7 @@ create table attachment(
     primary key(idx),
     foreign key(boardidx) references board(idx),
     foreign key(attachmenttype) references attachmenttype(code)
-)
+);
 
 create table source(
     idx int not null auto_increment,
@@ -101,7 +111,7 @@ create table source(
     primary key(idx),
     foreign key(boardidx) references board(idx),
     foreign key(sourcetypecode) references sourcetype(code)
-)
+);
 
 create table comment(
     idx int not null auto_increment,
@@ -117,7 +127,7 @@ create table comment(
     primary key(idx),
     foreign key(boardidx) references board(idx),
     foreign key(parentcommentidx) references comment(idx)
-)
+);
 
 create table mail(
     idx int not null auto_increment,
@@ -127,7 +137,7 @@ create table mail(
     
     primary key(idx),
     foreign key(memberid) references member(id)
-)
+);
 
 create table banip(
     idx int not null auto_increment,
@@ -139,12 +149,47 @@ create table banip(
     updater varchar(100),
     
     primary key(idx)
-)
+);
 
 create table notice(
-
-)
+    idx int not null auto_increment,
+    boardidx int not null,
+    cookiekey varchar(255),
+    startdate datetime,
+    enddate datetime,
+    isdeleted bit default 0 not null,
+    createddate datetime not null,
+    creater varchar(100) not null,
+    updateddate datetime,
+    updater varchar(100),
+    
+    primary key(idx),
+    foreign key(boardidx) references board(idx)
+);
 
 create table message(
+    idx int not null auto_increment,
+    sendid varchar(100) not null,
+    receiveid varchar(100) not null,
+    ischecked bit default 0 not null,
+    isdeleted bit default 0 not null,
+    createddate datetime not null,
+    creater varchar(100) not null,
+    updateddate datetime,
+    updater varchar(100),
+    
+    primary key(idx),
+    foreign key(sendid) references member(id),
+    foreign key(receiveid) references member(id)
+);
 
-)
+
+
+
+
+
+
+
+
+
+

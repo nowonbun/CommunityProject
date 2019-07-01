@@ -1,0 +1,14 @@
+insert into grouptype (code, name, isactive) values('G001', 'user', 1);
+insert into grouptype (code, name, isactive) values('G002', 'manager', 1);
+insert into grouptype (code, name, isactive) values('G003', 'admin', 1);
+insert into grouptype (code, name, isactive) values('G009', 'denied', 1);
+
+insert into boardtype(code, name, isactive) values('B001', 'default board', 1);
+insert into boardtype(code, name, isactive) values('B002', 'source board', 1);
+insert into boardtype(code, name, isactive) values('B003', 'qa board', 1);
+insert into boardtype(code, name, isactive) values('B004', 'notice board', 1);
+
+insert into attachmenttype(code, name, contenttype, isactive) values('I001', 'jpg', 'jpg', 1);
+insert into attachmenttype(code, name, contenttype, isactive) values('I002', 'zip', 'zip', 1);
+
+insert into sourcetype(code, name, classtype, isactive) values('S001', 'java', 'java', 1);
