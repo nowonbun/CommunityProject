@@ -72,28 +72,16 @@ class Member
         $this->groupcode = $groupcode;
     }
 
-    /**
-     *
-     * @param mixed $isban
-     */
     public function setIsban($isban)
     {
         $this->isban = $isban;
     }
 
-    /**
-     *
-     * @param mixed $createddate
-     */
     public function setCreateddate($createddate)
     {
         $this->createddate = $createddate;
     }
 
-    /**
-     *
-     * @param mixed $updateddate
-     */
     public function setUpdateddate($updateddate)
     {
         $this->updateddate = $updateddate;
