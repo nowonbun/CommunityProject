@@ -3,14 +3,9 @@
 class AttachmentTypeDao extends AbstractDao
 {
 
-    protected function getClass()
+    protected function getClassName()
     {
         return "AttachmentType";
-    }
-
-    public function select()
-    {
-        return parent::transaction("SELECT * FROM AttachmentType");
     }
 }
 ?>

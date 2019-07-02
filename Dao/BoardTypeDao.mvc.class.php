@@ -3,14 +3,9 @@
 class BoardTypeDao extends AbstractDao
 {
 
-    protected function getClass()
+    protected function getClassName()
     {
         return "BoardType";
-    }
-
-    public function select()
-    {
-        return parent::transaction("SELECT * FROM BoardType");
     }
 }
 ?>

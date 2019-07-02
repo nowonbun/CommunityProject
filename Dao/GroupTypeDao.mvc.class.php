@@ -3,14 +3,9 @@
 class GroupTypeDao extends AbstractDao
 {
 
-    protected function getClass()
+    protected function getClassName()
     {
         return "GroupType";
-    }
-
-    public function select()
-    {
-        return parent::transaction("SELECT * FROM GroupType");
     }
 }
 ?>

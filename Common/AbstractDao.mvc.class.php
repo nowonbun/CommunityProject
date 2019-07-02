@@ -15,11 +15,11 @@ abstract class AbstractDao
 
     private $dbname = "community";
 
-    protected abstract function getClass();
+    protected abstract function getClassName();
 
     protected function transaction($qy)
     {
-        return $this->transaction($qy, $this->getClass());
+        return $this->transaction($qy, $this->getClassName());
     }
 
     protected function transaction($qy, $clz)
@@ -54,6 +54,11 @@ abstract class AbstractDao
         } finally {
             mysqli_close($conn);
         }
+    }
+
+    public function select()
+    {
+        return $this->transaction("SELECT * FROM " . $this->getClassName());
     }
 }
 ?>

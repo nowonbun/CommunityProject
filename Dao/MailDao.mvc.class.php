@@ -3,14 +3,9 @@
 class MailDao extends AbstractDao
 {
 
-    protected function getClass()
+    protected function getClassName()
     {
         return "Mail";
-    }
-
-    public function select()
-    {
-        return parent::transaction("SELECT * FROM Mail");
     }
 }
 ?>

@@ -3,14 +3,9 @@
 class BanipDao extends AbstractDao
 {
 
-    protected function getClass()
+    protected function getClassName()
     {
         return "Banip";
-    }
-
-    public function select()
-    {
-        return parent::transaction("SELECT * FROM Banip");
     }
 }
 ?>

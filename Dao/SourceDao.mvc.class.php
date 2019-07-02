@@ -1,16 +1,11 @@
 <?php
 
-class AttachmentDao extends AbstractDao
+class SourceDao extends AbstractDao
 {
 
-    protected function getClass()
+    protected function getClassName()
     {
-        return "Attachment";
-    }
-
-    public function select()
-    {
-        return parent::transaction("SELECT * FROM Attachment");
+        return "Source";
     }
 }
 ?>

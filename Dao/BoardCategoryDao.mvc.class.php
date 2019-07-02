@@ -3,14 +3,9 @@
 class BoardCategoryDao extends AbstractDao
 {
 
-    protected function getClass()
+    protected function getClassName()
     {
         return "BoardCategory";
-    }
-
-    public function select()
-    {
-        return parent::transaction("SELECT * FROM BoardCategory");
     }
 }
 ?>
