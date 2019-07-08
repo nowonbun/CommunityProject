@@ -21,5 +21,59 @@
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+		<style>
+			.navbar-nowonbun{
+				display: -ms-flexbox!important;
+				display: flex!important;
+				-ms-flex-preferred-size: auto;
+				flex-basis: auto;
+				-ms-flex-preferred-size: 100%;
+				flex-basis: 100%;
+				-ms-flex-positive: 1;
+				flex-grow: 1;
+				-ms-flex-align: center;
+				align-items: center;
+			}
+			ul.navbar-nav-nowonbun{
+			    flex-direction: row;
+				display: -ms-flexbox;
+				display: flex;
+				padding-left: 0;
+				margin-bottom: 0;
+				list-style: none;
+			}
+			a.nav-link{
+				color: rgba(0,0,0,.9);
+			}
+		</style>
 	</head>
 <body>
+<div>
+	Main Image
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="navbar-nowonbun" id="navbarNavDropdown">
+    <ul class="navbar-nav-nowonbun">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
